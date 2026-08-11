@@ -55,7 +55,7 @@
        b = the middle skill (Interpret, Understand). c = unassessed instinct.
        The top skill (Evaluate, Weigh, Apply) sits on a solid accent ground. */
     --chip-a-bg: rgba(var(--a1-rgb),0.16);  --chip-a-fg: var(--a1);
-    --chip-b-bg: rgba(var(--a2-rgb),0.16);  --chip-b-fg: var(--a2);
+    --chip-b-bg: rgba(var(--a2-rgb),0.16);  --chip-b-fg: #9E3855;  /* one step darker than --a2: on its own tint the accent measured 4.17 */
     --chip-c-bg: rgba(0,0,0,0.06);
     --scrim:  rgba(27,42,51,0.5);       /* modal backdrop */
     --inset:  rgba(255,255,255,0.4);    /* sort column well */
@@ -66,12 +66,12 @@
   }
 
   /* ---- DARK MODE TOKEN RE-POINT ---------------------------------------
-     The skin supplies body.alt values for the thirteen identity variables.
+     The skin supplies body.dark values for the thirteen identity variables.
      Everything derived re-points here, once, for every unit. This is the
      engine-level fix for the three defects logged in MOBILE_FIXES_HANDOVER:
      a skin no longer needs the patch block at all.
      ------------------------------------------------------------------- */
-  body.alt {
+  body.dark {
     --muted:      var(--fade);
     --hair:       rgba(255,255,255,0.14);
     --hair-strong:rgba(255,255,255,0.26);
@@ -89,11 +89,9 @@
     --inset:  rgba(255,255,255,0.05);
   }
   /* Key term chips keep a visible edge once the ground inverts. */
-  body.alt .kt-term { border-color: var(--hair-strong); }
-  body.alt .kt-term summary { color: var(--ink); }
-  body.alt .kt-label { border-top-color: var(--hair-strong); }
-  /* v2 dimmed the options a learner did not pick; at 0.45 they vanish on a dark ground. */
-  body.alt .option.dimmed, body.alt .option-btn.dimmed { opacity: 0.72; }
+  body.dark .kt-term { border-color: var(--hair-strong); }
+  body.dark .kt-term summary { color: var(--ink); }
+  body.dark .kt-label { border-top-color: var(--hair-strong); }
 
   /* ---- MODE TOGGLE. Fixed bottom right, 44px minimum tap target. ---- */
   .mode-toggle {
@@ -163,10 +161,16 @@
   --cut:   #E2DFD7;   /* insets, sources, carousels */
   --ink:   #22262A;   /* body text, a green-black */
   --clay:  #545B60;   /* stage tags, quiet labels */
-  --fade:  #83898E;   /* muted text, captions */
+  /* Muted text: captions, attributions, counters. The previous value measured 2.66
+     against the --cut inset, which is the darkest ground it sits on. */
+  --fade:  #5E646A;   /* muted text, captions */
   /* accents: interstate green for the settled line, signal amber for the contested one */
   --a1: #2B3034;  --a1-rgb: 43,48,52;
   --a2: #B23F60;  --a2-rgb: 178,63,96;
+  /* The two hover steps are derived, not identity. Left in the engine block
+     they kept the engine's bottle green against this skin's rose. */
+  --ink-deep: #171A1D;
+  --a2-deep:  #8B314B;
   /* type: a grotesque carries the history, a serif is kept for documents only */
   --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --serif: Georgia, 'Times New Roman', serif;
@@ -297,7 +301,7 @@ h1, h2, h3 { font-family: var(--sans) !important; letter-spacing: -0.012em !impo
    The failure mode logged against dark identities is a washed-out screen in
    sunlight, so the light ground above is the default and this is the inversion.
    Concrete goes to asphalt and the enamel colours brighten rather than dim. */
-body.alt {
+body.dark {
   --sand:  #17191B;
   --paper: #212528;
   --cut:   #292E31;
@@ -306,94 +310,95 @@ body.alt {
   --fade:  #91979C;
   --a1: #B9C0C6;  --a1-rgb: 185,192,198;
   --a2: #E5849F;  --a2-rgb: 229,132,159;
+  /* On a dark ground a hover step goes lighter, not deeper. */
+  --ink-deep: #FFFFFF;
+  --a2-deep:  #F0A6BA;
 }
-body.alt { background-image:
+body.dark { background-image:
   repeating-linear-gradient(0deg, transparent 0 46px, rgba(233,237,231,0.038) 46px 47px) !important; }
-body.alt .card, body.alt .source, body.alt .stat-wrap,
-body.alt .carousel, body.alt .kt { border-color: rgba(185,192,198,0.26) !important; }
-body.alt .card { border-left-color: var(--a1) !important; background-image: none !important; }
-body.alt .source { border-color: rgba(233,237,231,0.30) !important; }
-body.alt .stage-tag, body.alt .kt-label,
-body.alt .expl-label, body.alt .pop-label { background: rgba(185,192,198,0.22) !important; color: #C6E6D2 !important; }
-body.alt .source-attr { background: rgba(185,192,198,0.16) !important; color: #C6E6D2 !important; }
-body.alt .btn-begin { background: var(--a1) !important; border-color: var(--a1) !important; color: #0E1512 !important; }
-body.alt .btn-begin:hover { background: #62B37D !important; border-color: #62B37D !important; }
-body.alt .mode-toggle { background: var(--paper); border-color: rgba(233,237,231,0.24); }
-body.alt .rule, body.alt .cover-rule, body.alt .flourish {
+body.dark .card, body.dark .source, body.dark .stat-wrap,
+body.dark .carousel, body.dark .kt { border-color: rgba(185,192,198,0.26) !important; }
+body.dark .card { border-left-color: var(--a1) !important; background-image: none !important; }
+body.dark .source { border-color: rgba(233,237,231,0.30) !important; }
+body.dark .stage-tag, body.dark .kt-label,
+body.dark .expl-label, body.dark .pop-label { background: rgba(185,192,198,0.22) !important; color: #C6E6D2 !important; }
+body.dark .source-attr { background: rgba(185,192,198,0.16) !important; color: #C6E6D2 !important; }
+body.dark .btn-begin { background: var(--a1) !important; border-color: var(--a1) !important; color: #0E1512 !important; }
+body.dark .btn-begin:hover { background: #62B37D !important; border-color: #62B37D !important; }
+body.dark .mode-toggle { background: var(--paper); border-color: rgba(233,237,231,0.24); }
+body.dark .rule, body.dark .cover-rule, body.dark .flourish {
   background-image: repeating-linear-gradient(90deg,
     var(--a1) 0 16px, rgba(22,25,26,0.95) 16px 26px) !important;
 }
 
 /* Tier and level chips carry light grounds in the base engine and glare when
    the ground inverts, so each gets a dark ground of its own. */
-body.alt .chip { background: rgba(185,192,198,0.16) !important; color: #C6E6D2 !important; }
-body.alt .chip-recall,     body.alt .chip-extract   { background: rgba(229,132,159,0.20) !important; color: #F5CFA4 !important; }
-body.alt .chip-understand, body.alt .chip-interpret { background: rgba(185,192,198,0.20) !important; color: #BCE2CA !important; }
-body.alt .chip-apply,      body.alt .chip-evaluate  { background: rgba(233,237,231,0.16) !important; color: #EAEAE6 !important; }
-body.alt .option-btn, body.alt .opt-btn { border-color: rgba(233,237,231,0.20) !important; }
+body.dark .chip { background: rgba(185,192,198,0.16) !important; color: #C6E6D2 !important; }
+body.dark .chip-recall,     body.dark .chip-extract   { background: rgba(229,132,159,0.20) !important; color: #F5CFA4 !important; }
+body.dark .chip-understand, body.dark .chip-interpret { background: rgba(185,192,198,0.20) !important; color: #BCE2CA !important; }
+body.dark .chip-apply,      body.dark .chip-evaluate  { background: rgba(233,237,231,0.16) !important; color: #EAEAE6 !important; }
+body.dark .option-btn, body.dark .opt-btn { border-color: rgba(233,237,231,0.20) !important; }
 
 
 /* ---- DARK MODE STATE COLOURS -----------------------------------------------
    The base variables flip, but several states carry hardcoded light values.
    Left alone they produce pale text on pale grounds. */
 
-body.alt .option-btn.correct {
+body.dark .option-btn.correct {
   background: rgba(185,192,198,0.18) !important;
   border-color: #B9C0C6 !important;
   color: var(--ink) !important;
 }
-body.alt .option-btn.wrong {
+body.dark .option-btn.wrong {
   background: rgba(229,132,159,0.16) !important;
   border-color: #E5849F !important;
   color: var(--ink) !important;
 }
-body.alt .option-btn.correct .opt-text,
-body.alt .option-btn.wrong   .opt-text { color: var(--ink) !important; }
-body.alt .option-btn.correct .opt-letter { color: #7FC79A !important; }
-body.alt .option-btn.wrong   .opt-letter { color: #F0B67E !important; }
-body.alt .opt-mark { color: var(--ink) !important; }
-body.alt .option-btn.dimmed { opacity: 0.72 !important; }
+body.dark .option-btn.correct .opt-text,
+body.dark .option-btn.wrong   .opt-text { color: var(--ink) !important; }
+body.dark .option-btn.correct .opt-letter { color: #7FC79A !important; }
+body.dark .option-btn.wrong   .opt-letter { color: #F0B67E !important; }
+body.dark .opt-mark { color: var(--ink) !important; }
 
-body.alt .primary-btn {
+body.dark .primary-btn {
   background: var(--cut) !important;
   border: 1px solid rgba(185,192,198,0.40) !important;
   color: var(--ink) !important;
 }
-body.alt .primary-btn:hover { background: #2E3733 !important; }
-body.alt .primary-btn .btn-title { color: var(--ink) !important; }
-body.alt .primary-btn .btn-sub,
-body.alt .primary-btn .btn-arrow { color: var(--clay) !important; }
+body.dark .primary-btn:hover { background: #2E3733 !important; }
+body.dark .primary-btn .btn-title { color: var(--ink) !important; }
+body.dark .primary-btn .btn-sub,
+body.dark .primary-btn .btn-arrow { color: var(--clay) !important; opacity: 1 !important; }
 
-body.alt .section-btn { border-color: rgba(233,237,231,0.18) !important; color: var(--ink) !important; }
-body.alt .section-btn:hover { background: var(--cut) !important; border-color: var(--a1) !important; }
-body.alt .primary-btn-small { background: var(--a1) !important; color: #0E1512 !important; }
-body.alt .primary-btn-small:hover:not(:disabled) { background: #62B37D !important; }
-body.alt .secondary-btn { border-color: rgba(233,237,231,0.30) !important; color: var(--ink) !important; }
-body.alt .secondary-btn:hover:not(:disabled) { background: var(--cut) !important; }
+body.dark .section-btn { border-color: rgba(233,237,231,0.18) !important; color: var(--ink) !important; }
+body.dark .section-btn:hover { background: var(--cut) !important; border-color: var(--a1) !important; }
+body.dark .primary-btn-small { background: var(--a1) !important; color: #0E1512 !important; }
+body.dark .primary-btn-small:hover:not(:disabled) { background: #62B37D !important; }
+body.dark .secondary-btn { border-color: rgba(233,237,231,0.30) !important; color: var(--ink) !important; }
+body.dark .secondary-btn:hover:not(:disabled) { background: var(--cut) !important; }
 
-body.alt .explanation { background: var(--cut) !important; border-color: rgba(185,192,198,0.28) !important; }
-body.alt .expl-text { color: var(--ink) !important; }
-body.alt .quiz-foot a, body.alt .quiz-foot { color: var(--clay) !important; }
+body.dark .explanation { background: var(--cut) !important; border-color: rgba(185,192,198,0.28) !important; }
+body.dark .expl-text { color: var(--ink) !important; }
+body.dark .quiz-foot a, body.dark .quiz-foot { color: var(--clay) !important; }
 
 /* The lesson engine uses .option where the quiz uses .option-btn, so the state
    overrides have to name both or half the product stays broken. */
-body.alt .option { background: var(--cut) !important; border-color: rgba(233,237,231,0.18) !important; color: var(--ink) !important; }
-body.alt .option.selected { background: rgba(229,132,159,0.14) !important; border-color: #E5849F !important; }
-body.alt .option.correct {
+body.dark .option { background: var(--cut) !important; border-color: rgba(233,237,231,0.18) !important; color: var(--ink) !important; }
+body.dark .option.selected { background: rgba(229,132,159,0.14) !important; border-color: #E5849F !important; }
+body.dark .option.correct {
   background: rgba(185,192,198,0.18) !important;
   border-color: #B9C0C6 !important;
   color: var(--ink) !important;
 }
-body.alt .option.wrong {
+body.dark .option.wrong {
   background: rgba(229,132,159,0.16) !important;
   border-color: #E5849F !important;
   color: var(--ink) !important;
 }
-body.alt .option.correct .opt-text,
-body.alt .option.wrong   .opt-text { color: var(--ink) !important; }
-body.alt .option.correct .opt-letter { color: #7FC79A !important; }
-body.alt .option.wrong   .opt-letter { color: #F0B67E !important; }
-body.alt .option.dimmed { opacity: 0.72 !important; }
+body.dark .option.correct .opt-text,
+body.dark .option.wrong   .opt-text { color: var(--ink) !important; }
+body.dark .option.correct .opt-letter { color: #7FC79A !important; }
+body.dark .option.wrong   .opt-letter { color: #F0B67E !important; }
 
 
 /* The toggle is fixed bottom right and lands on the Continue button on a short
@@ -417,9 +422,9 @@ body { padding-bottom: 4.5rem !important; }
   padding-top: 0.6rem;
 }
 .figure img { border: 1px solid rgba(43,48,52,0.28) !important; border-radius: 2px !important; }
-body.alt .figure img { border-color: rgba(185,192,198,0.30) !important; }
-body.alt .figure figcaption { border-top-color: rgba(185,192,198,0.24); }
-body.alt .figure img { filter: brightness(0.9) contrast(1.02); }
+body.dark .figure img { border-color: rgba(185,192,198,0.30) !important; }
+body.dark .figure figcaption { border-top-color: rgba(185,192,198,0.24); }
+body.dark .figure img { filter: brightness(0.9) contrast(1.02); }
 
 
 
@@ -465,7 +470,9 @@ body.alt .figure img { filter: brightness(0.9) contrast(1.02); }
   .cover-time { font-family: var(--sans); font-size: 0.8rem; color: var(--fade); margin-top: 1.4rem; letter-spacing: 0.02em; }
   .btn-begin { font-family: var(--sans); display: inline-flex; align-items: center; gap: 0.8rem; padding: 1.05rem 2.2rem; background: var(--ink); color: var(--on-ink); border: none; cursor: pointer; font-size: 1.12rem; font-weight: 700; }
   .btn-begin:hover { background: var(--ink-deep); }
-  .btn-begin .sa { color: var(--a1); font-size: 1.3rem; }
+  /* The arrow takes the button's own text colour. Painted --a1 it disappears on
+     any skin that also makes the Begin button --a1 or close to it. */
+  .btn-begin .sa { color: currentColor; font-size: 1.3rem; }
   .skip-link { display: block; margin: 1.6rem auto 0; background: transparent; border: none; color: var(--fade); font-family: var(--sans); font-size: 0.84rem; cursor: pointer; text-decoration: underline; }
 
   /* Story hook */
@@ -539,7 +546,10 @@ body.alt .figure img { filter: brightness(0.9) contrast(1.02); }
   .source { position: relative; background: var(--cut); border: 1px solid var(--hair); border-top: 3px solid var(--a2); box-shadow: 6px 6px 0 rgba(var(--a2-rgb),0.13); padding: 1.2rem 1.3rem; margin: 1.15rem 0 1.6rem; }
   .source-attr { font-family: var(--sans); font-size: 0.8rem; color: var(--clay); font-weight: 600; margin-bottom: 0.75rem; line-height: 1.5; }
   .source-body { font-size: 1.02rem; line-height: 1.74; }
-  .source-body em { color: var(--a2); font-style: italic; }
+  /* --a2 measured 4.18 on the light source ground, so light takes one step darker.
+     Dark keeps --a2, which is already a light rose and reads correctly there. */
+  .source-body em { color: #9E3855; font-style: italic; }
+  body.dark .source-body em { color: var(--a2); }
   .toggle-btn { font-family: var(--sans); background: transparent; border: none; color: var(--a1); cursor: pointer; font-size: 0.88rem; font-weight: 600; text-decoration: underline; padding: 0.7rem 0 0; }
   .toggle-body { display: none; margin-top: 0.7rem; padding-top: 0.7rem; border-top: 1px dashed var(--hair-strong); font-size: 0.94rem; color: var(--muted); line-height: 1.66; }
   .toggle-body.open { display: block; }
@@ -553,8 +563,10 @@ body.alt .figure img { filter: brightness(0.9) contrast(1.02); }
   .option.selected { background: var(--cut); border-color: var(--a1); border-width: 2px; padding: 0.94rem 0.99rem; }
   .option.correct { background: var(--ok-bg); border-color: var(--a2); border-width: 2px; padding: 0.94rem 0.99rem; }
   .option.wrong { background: var(--no-bg); border-color: var(--clay); border-width: 2px; padding: 0.94rem 0.99rem; }
-  .option.dimmed { opacity: 0.46; }
-  body.alt .option.dimmed { opacity: 0.72; }
+  /* The dimmed state fell below readable contrast at 360px. One rule per mode,
+     and nothing later in the file competes with it. */
+  .option.dimmed, .option-btn.dimmed { opacity: 0.82; }
+  body.dark .option.dimmed, body.dark .option-btn.dimmed { opacity: 0.86; }
   .opt-letter { font-family: var(--serif); font-weight: 800; color: var(--a1); min-width: 1.1rem; }
   .opt-text { flex: 1; }
   .opt-mark { font-weight: 700; font-size: 1.1rem; }
@@ -628,19 +640,8 @@ body.alt .figure img { filter: brightness(0.9) contrast(1.02); }
   .sort-place { font-family: var(--sans); flex: 1; font-size: 0.78rem; font-weight: 700; padding: 0.4rem; background: var(--paper); border: 1px solid var(--hair-strong); cursor: pointer; color: var(--ink); }
 
   /* Running summary */
-  .runsum { background: rgba(var(--a2-rgb),0.08); border: 1px solid rgba(var(--a2-rgb),0.28); border-left: 5px solid var(--a2); padding: 1.3rem 1.4rem; }
-  .runsum-label { font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--a2); font-weight: 700; margin-bottom: 0.9rem; }
-  .runsum ol { margin: 0; padding-left: 1.3rem; }
-  .runsum li { font-size: 1.02rem; line-height: 1.66; margin-bottom: 0.7rem; color: var(--ink); }
-  .runsum li:last-child { margin-bottom: 0; }
-  .runsum li.fresh { font-weight: 700; color: var(--a2); }
 
   /* Popup */
-  .pop-back { position: fixed; inset: 0; background: var(--scrim); display: flex; align-items: center; justify-content: center; padding: 1.5rem; z-index: 50; }
-  .pop { background: var(--paper); border-top: 5px solid var(--a2); padding: 1.6rem 1.5rem; max-width: 30rem; width: 100%; box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
-  .pop-label { font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--a2); font-weight: 700; margin-bottom: 0.8rem; }
-  .pop-text { font-size: 1.1rem; line-height: 1.6; font-weight: 600; color: var(--ink); margin-bottom: 1.3rem; }
-  .pop-btn { font-family: var(--sans); width: 100%; padding: 0.9rem; background: var(--a2); border: none; color: var(--on-a2); font-size: 0.98rem; font-weight: 700; cursor: pointer; }
 
   /* Nav */
   .nav { display: flex; justify-content: space-between; gap: 0.8rem; margin-top: 1rem; }
@@ -688,6 +689,24 @@ body.alt .figure img { filter: brightness(0.9) contrast(1.02); }
 </div>
 
 <script>
+/* ---- LMS EMBED EVENTS ----------------------------------------------------
+   Two moments, deliberately separate. Reaching the closing screen marks the
+   activity done for progress tracking. Choosing to leave it advances. Firing
+   advance on arrival would pull the learner off their own results screen
+   before they had read it. ------------------------------------------------ */
+var KulaLMS = (function(){
+  var done = false;
+  function send(ev){
+    try{
+      window.parent.postMessage({ type: 'lms-embed-event', version: '1.0',
+        payload: { event: ev } }, '*');
+    }catch(e){}
+  }
+  return {
+    completed: function(){ if(done) return; done = true; send('completed'); },
+    advance:   function(){ send('advance'); }
+  };
+})();
 /* kula: re-entry guard. Every declaration below is function scoped, so a
    viewer that re-runs this script re-initialises instead of throwing a
    redeclaration SyntaxError and leaving FLOW undefined. */
@@ -708,11 +727,7 @@ const COVER = {
 const RESULTS = {
   "eyebrow": "Lesson 3 report",
   "title": "Where you stand",
-  "done": {
-    "label": "Lesson complete",
-    "title": "Testing It on the Road",
-    "text": "Tap Done to continue to Lesson 4, Birmingham, Washington, Selma."
-  },
+  "next": "Continue to Lesson 4",
   "footer": "Next: Lesson 4, what the movement finally forced out of Washington.",
   "bands": {
     "excellent": "You can read what a source implies as well as what it says. Go on to Lesson 4.",
@@ -861,7 +876,7 @@ const FLOW = [
       3,
       4
     ],
-    "explanation": "Boynton came first, in December 1960, and that is the one most people misplace. Then Greensboro in February, the Riders in May, Anniston six days later, and the deadline that November. Put the ruling after the Rides and you turn a deliberate test into a protest asking for a new law. Those are two different arguments, and only one of them holds.",
+    "explanation": "Boynton came first, in December 1960. That is the one most people misplace. Then Greensboro in February, the Riders in May, Anniston six days later, and the deadline that November. Put the ruling after the Rides and a deliberate test becomes a protest asking for a new law. Those are two different arguments, and only one of them holds.",
     "noSource": true
   },
   {
@@ -924,7 +939,7 @@ const FLOW = [
       "To bring the Congress of Racial Equality and SNCC into one body"
     ],
     "correct": 0,
-    "explanation": "The source gives you the sentence outright, and the key word in it is test. Option {opt1} is the one to watch, because it reverses the order you sorted out a moment ago. The rulings already existed, and the Rides were checking whether anyone obeyed them. Write that the Riders wanted a new law and you contradict your own source.",
+    "explanation": "The source gives you the sentence outright, and the key word in it is test. Option {opt1} is the one to watch. It reverses the order you sorted out a moment ago. The rulings already existed. The Rides were checking whether anyone obeyed them. Write that the Riders wanted a new law and you contradict your own source.",
     "marks": "(1 x 2)  2 marks"
   },
   {
@@ -938,7 +953,7 @@ const FLOW = [
       "That the mob had gathered too quickly for anyone to be warned first"
     ],
     "correct": 0,
-    "explanation": "The source does not say the police stayed away on purpose, so this is an inference you have to build. A mob that stops after exactly fifteen minutes, as the police appear, has been told how long it has. Options {opt1} and {opt2} explain the delay away as an accident, and they tempt because they are polite. Take the softer reading and you have answered what is stated, not what is implied.",
+    "explanation": "The source does not say the police stayed away on purpose. This is an inference you have to build. A mob that stops after exactly fifteen minutes, as the police appear, has been told how long it has. Options {opt1} and {opt2} explain the delay away as an accident. They tempt you because they are polite. Take the softer reading and you have answered what is stated, not what is implied.",
     "marks": "(2 x 2)  4 marks"
   },
   {
@@ -1005,7 +1020,7 @@ const FLOW = [
       "The failure to enforce the law amounted to unlawful state action in Alabama that day"
     ],
     "correct": 0,
-    "explanation": "A quote question wants the words on the page, and two of them here. Knowing the bus was coming, and saying in advance that they would not act, are the two that show foreknowledge. Options {opt2} and {opt3} are on the page too, and both describe what happened afterwards. Answer a question about what the police knew with evidence about what followed and you have changed the question."
+    "explanation": "A quote question wants the words on the page, and two of them here. Knowing the bus was coming. Saying in advance that they would not act. Those two show foreknowledge. Options {opt2} and {opt3} are on the page too, and both describe what happened afterwards. Answer a question about what the police knew with evidence about what followed and you have changed the question."
   },
   {
     "type": "question",
@@ -1019,7 +1034,7 @@ const FLOW = [
       "It agrees with Source A, and two sources saying the same thing must be right"
     ],
     "correct": 0,
-    "explanation": "Reliability is about how the account was produced, not about who produced it. This one was tested under oath and checked against the department's own record. Option {opt1} is the trap, because a job title is not a reason. Note the complication too: the same judgement restrained the Riders and their leaders. Say that and you are weighing the source instead of praising it."
+    "explanation": "Reliability is about how the account was made, not about who made it. This one was tested under oath and checked against the department's own record. Option {opt1} is the trap. A job title is not a reason. Note the complication too: the same judgement restrained the Riders and their leaders. Say that and you are weighing the source instead of praising it."
   },
   {
     "type": "question",
@@ -1032,7 +1047,7 @@ const FLOW = [
       "That the Riders themselves refused all treatment as a matter of principle"
     ],
     "correct": 0,
-    "explanation": "You have people who just escaped a burning bus, so this is not a sentence about minor injuries. The point is who did not help. Deacons had to drive from Birmingham to collect them, which shows refusal rather than shortage. Option {opt3} sounds thoughtful and inverts the meaning completely. It argues against your own source.",
+    "explanation": "You have people who just escaped a burning bus, so this is not a sentence about minor injuries. What matters is who stayed away. Deacons had to drive from Birmingham to collect them, which shows refusal rather than shortage. Option {opt3} sounds thoughtful and inverts the meaning completely. It argues against your own source.",
     "noSource": true
   },
   {
@@ -1047,7 +1062,7 @@ const FLOW = [
       "Of limited use, because it was written in 1961 and is therefore too close to the events"
     ],
     "correct": 0,
-    "explanation": "Usefulness is about the job a source can do. This one can do a job almost nothing else can: it puts on record what the police knew on the morning of 20 May and what they then did not do. That is the difference between absence and a decision. Option {opt3} treats closeness to the events as a weakness, when here it is the strength: the findings rest on witnesses who were still available. Name the job before you judge the source."
+    "explanation": "Usefulness is about the job a source can do. This one does a job almost nothing else can. It puts on record what the police knew on the morning of 20 May, and what they then did not do. That is the difference between absence and a decision. Option {opt3} treats closeness to the events as a weakness. Here it is the strength, because the findings rest on witnesses who were still available. Name the job before you judge the source."
   },
   {
     "type": "question",
@@ -1060,7 +1075,7 @@ const FLOW = [
       "It uses American legal terms that a reader outside America may not know"
     ],
     "correct": 0,
-    "explanation": "Take a position, then say what the source can reach for you. It names the petition of 29 May, the Commission and the November deadline. That is the chain of federal action, and it is real value. Option {opt2} claims something the source never offers, since nothing here reports a private decision. Naming what a source can do is the answer. Claiming more than it holds is not.",
+    "explanation": "Take a position, then say what the source can reach for you. It names the petition of 29 May, the Commission and the November deadline. That is the chain of federal action, and it is real value. Option {opt2} claims something the source never offers, since nothing here reports a private decision. Say what the source can do. Do not claim more than it holds.",
     "marks": "(2 x 2)  4 marks"
   },
   {
@@ -1097,27 +1112,6 @@ const FLOW = [
         "body": "The Interstate Commerce Commission order takes effect. Terminals serving interstate travel must be integrated."
       }
     ]
-  },
-  {
-    "type": "question",
-    "build": true,
-    "part": "The Rides were not asking for a new law but testing one already won, and the answer was organised violence with the police arriving late by arrangement, so the challenge was a state choosing which side to protect",
-    "q": "Which sentence best sums up what this lesson establishes?",
-    "options": [
-      "The Rides were not asking for a new law but testing one already won, and the answer was organised violence with the police arriving late by arrangement, so the challenge was a state choosing which side to protect",
-      "Four students began a sit-in at Greensboro in February 1960, students founded SNCC in April, eleven Freedom Riders left Washington in May 1961, and a mob burned their bus outside Anniston in Alabama later that same month",
-      "The Freedom Rides failed because the violence in Alabama stopped the buses, and segregation in interstate travel only ended later on when the Supreme Court agreed to hear the question of the bus terminals for a second time"
-    ],
-    "correct": 0,
-    "explanation": "Option {opt0} names what the whole sequence proved rather than listing it. Option {opt1} is accurate throughout, which is why it tempts you, and it never says why any of it mattered. That is narrative instead of argument. Option {opt2} is wrong twice over: the Rides continued, and it was the Commerce Commission rather than the court that closed it.",
-    "noSource": true,
-    "buildLabel": "What Lesson 3 argues"
-  },
-  {
-    "type": "runsum",
-    "tag": "Your running summary",
-    "heading": "What this lesson argues",
-    "label": "The argument so far"
   },
   {
     "type": "content",
@@ -1158,10 +1152,8 @@ const state = {
   order: {},               // qIdx -> shuffled content-index array
   carRead: {},             // stepIdx -> Set of read card indices
   interState: {},          // qIdx -> working state for order/sort
-  poppedBuild: {},         // qIdx -> bool (running-summary popup already shown)
 };
 
-const buildIds = FLOW.map((f,i)=>f.build?i:null).filter(i=>i!==null);
 const assessedIds = FLOW.map((f,i)=>(f.type==="question"&&f.level)?i:null).filter(i=>i!==null);
 
 function esc(s){
@@ -1509,30 +1501,6 @@ function renderSort(item){
   });
 }
 
-// ============ RUNNING SUMMARY (own screen) ============
-function renderRunsum(item){
-  const parts = buildIds.filter(i=>i<=state.idx && state.revealed[i]).map(i=>FLOW[i].part);
-  const freshIdx = parts.length-1;
-  const lis = parts.map((p,i)=>`<li class="${i===freshIdx?"fresh":""}">${esc(p)}</li>`).join("");
-  stage.innerHTML = `
-    <div class="card">
-      <div class="stage-tag">${esc(item.tag||"Your running summary")}</div>
-      ${item.heading?`<h2>${esc(item.heading)}</h2>`:""}
-      ${item.html?item.html:""}
-      <div class="runsum"><div class="runsum-label">${esc(item.label||"Your running summary")}</div><ol>${lis}</ol></div>
-      ${item.outro?`<p class="runsum-outro">${item.outro}</p>`:""}
-    </div>`;
-}
-
-// ============ POPUP after a build question ============
-function showBuildPop(part, label){
-  const back=document.createElement("div");
-  back.className="pop-back";
-  back.innerHTML=`<div class="pop"><div class="pop-label">${esc(label||"The line this lesson argues")}</div><div class="pop-text">${esc(part)}</div><button class="pop-btn" id="pop-ok">Got it</button></div>`;
-  document.body.appendChild(back);
-  document.getElementById("pop-ok").addEventListener("click",()=>back.remove());
-}
-
 // ============ NAV ============
 function syncNav(isQuestion){
   nav.classList.remove("hidden");
@@ -1561,12 +1529,6 @@ function syncNavInteractive(canCheck, answered, onCheck){
 }
 
 function defaultNext(){
-  // fire the running-summary popup when leaving a build question
-  const cur=FLOW[state.idx];
-  if(cur && cur.build && state.revealed[state.idx] && !state.poppedBuild[state.idx]){
-    state.poppedBuild[state.idx]=true;
-    showBuildPop(cur.part, cur.buildLabel);
-  }
   if(state.idx<FLOW.length-1){ state.idx++; render(); } else showResults();
 }
 
@@ -1591,7 +1553,6 @@ function render(){
     case "stat": renderStat(item); syncNav(false); break;
     case "source": renderSource(item); syncNav(false); break;
     case "question": renderQuestion(item); break;
-    case "runsum": renderRunsum(item); syncNav(false); break;
     default: renderContent(item); syncNav(false);
   }
 }
@@ -1632,8 +1593,6 @@ function showResults(){
     const p=Math.round(g/ids.length*100);
     return `<div class="bd-row"><div class="bd-name">${sp}</div><div class="bd-bar"><div class="bd-fill" style="width:${p}%"></div></div><div class="bd-score">${g}/${ids.length}</div></div>`;
   }).join("");
-  const parts=buildIds.filter(i=>state.revealed[i]).map(i=>FLOW[i].part);
-  const runsum = parts.length?`<div class="breakdown"><div class="breakdown-label">Your running summary</div><ol style="margin:0;padding-left:1.3rem;">${parts.map(p=>`<li style="font-size:0.98rem;line-height:1.62;margin-bottom:0.6rem;">${esc(p)}</li>`).join("")}</ol></div>`:"";
   stage.innerHTML = `
     <div class="results-head">
       <div class="results-eyebrow">${RESULTS.eyebrow||"Lesson report"}</div>
@@ -1646,24 +1605,19 @@ function showResults(){
     </div>
     <div class="grade-desc">${desc}</div>
     <div class="breakdown"><div class="breakdown-label">By skill</div>${rows}</div>
-    ${runsum}
     <div class="results-actions">
       <button class="btn-secondary" id="restart-btn">Restart lesson</button>
-      <button class="btn-primary" id="finish-btn">Finish &rarr;</button>
+      <button class="btn-primary" id="finish-btn">${esc(RESULTS.next||"Continue")} &rarr;</button>
     </div>
-    ${RESULTS.footer?`<div style="text-align:center;margin-top:1.1rem;font-size:0.92rem;color:var(--fade);">${esc(RESULTS.footer)}</div>`:""}`;
+    ${RESULTS.footer?`<div style="text-align:center;margin-top:1.1rem;padding-bottom:4.5rem;font-size:0.92rem;color:var(--fade);">${esc(RESULTS.footer)}</div>`:""}`;
   document.getElementById("restart-btn").addEventListener("click",()=>{
-    state.idx=-1; state.answers={}; state.revealed={}; state.order={}; state.carRead={}; state.interState={}; state.poppedBuild={};
+    state.idx=-1; state.answers={}; state.revealed={}; state.order={}; state.carRead={}; state.interState={};
     renderCover();
   });
-  document.getElementById("finish-btn").addEventListener("click",()=>{
-    const back=document.createElement("div");
-    back.className="pop-back";
-    const D = RESULTS.done||{};
-    back.innerHTML=`<div class="pop"><div class="pop-label">${esc(D.label||"Lesson complete")}</div>${D.title?`<h3 style="margin:.4rem 0 .2rem;font-size:1.05rem;">${esc(D.title)}</h3>`:""}<div class="pop-text">${esc(D.text||"Tap Done to continue to the next lesson.")}</div><button class="pop-btn" id="fin-ok">Done</button></div>`;
-    document.body.appendChild(back);
-    document.getElementById("fin-ok").addEventListener("click",()=>back.remove());
-  });
+  /* The button at the end of the lesson is the thing that continues. It does
+     not point at a control somewhere else on the page. */
+  document.getElementById("finish-btn").addEventListener("click",()=>{ KulaLMS.advance(); });
+  KulaLMS.completed();
 }
 
 function isRight(i){
@@ -1682,30 +1636,35 @@ renderCover();
    Injects its own button so there is no stray markup, and lives inside the
    single script block so a first-to-last script extraction still parses. */
 (function(){
-  var NATIVE = "light";
-  try{ if(localStorage.getItem("kula-mode")==="alt"){ document.body.classList.add("alt"); } }catch(e){}
+  /* What is stored is the mode the learner chose, "light" or "dark". Never a
+     class name and never "native". For an essay unit set NATIVE "dark",
+     FLIP "light", CLS "bright". Nothing else changes. */
+  var NATIVE = "light";   // the mode this unit is designed in
+  var FLIP   = "dark";    // the mode the toggle offers
+  var CLS    = "dark";    // the class that produces FLIP in this unit
+  try{ if(localStorage.getItem("kula-mode")===FLIP){ document.body.classList.add(CLS); } }catch(e){}
   var SUN='<circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/>';
   var MOON='<path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1z"/>';
-  var b=document.getElementById("mode-toggle");
+  var b=document.getElementById("kula-mode-toggle");
   if(!b){
     b=document.createElement("button");
-    b.className="mode-toggle"; b.id="mode-toggle"; b.type="button";
+    b.className="mode-toggle"; b.id="kula-mode-toggle"; b.type="button";
     b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" id="mode-icon"></svg><span id="mode-label"></span>';
     document.body.appendChild(b);
   }
   var lab=document.getElementById("mode-label"), ic=document.getElementById("mode-icon");
   function paint(){
-    var onAlt=document.body.classList.contains("alt");
-    var showing = onAlt ? (NATIVE==="dark" ? "light" : "dark") : NATIVE;
+    var flipped = document.body.classList.contains(CLS);
+    var showing = flipped ? FLIP : NATIVE;
     var offering = showing==="dark" ? "light" : "dark";
-    lab.textContent = offering==="light" ? "Light Mode" : "Dark Mode";
+    lab.textContent = offering==="light" ? "Light mode" : "Dark mode";
     ic.innerHTML = offering==="light" ? SUN : MOON;
-    b.setAttribute("aria-pressed", onAlt ? "true" : "false");
+    b.setAttribute("aria-pressed", showing==="dark" ? "true" : "false");
     b.setAttribute("aria-label", "Switch to " + offering + " mode");
   }
   b.addEventListener("click",function(){
-    var onAlt=document.body.classList.toggle("alt");
-    try{ localStorage.setItem("kula-mode", onAlt ? "alt" : "native"); }catch(e){}
+    var flipped=document.body.classList.toggle(CLS);
+    try{ localStorage.setItem("kula-mode", flipped ? FLIP : NATIVE); }catch(e){}
     paint();
   });
   paint();
