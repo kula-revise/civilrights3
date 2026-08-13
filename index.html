@@ -887,53 +887,47 @@ const RESULTS = {
 const FLOW = [
   {
     "type": "story",
-    "marker": "The locked gate",
-    "markerLabel": "Somewhere you know &middot; one Tuesday",
+    "marker": "The clause beside the test",
+    "markerLabel": "The southern states &middot; from 1898",
     "lines": [
       {
-        "mark": "7.40",
-        "text": "Two hundred of you wait outside the locked gate in the rain."
+        "text": "Several states add a reading test to their voting rules."
       },
       {
-        "mark": "8.00",
-        "text": "Somebody finally opens it. Twenty minutes gone."
+        "text": "The stated reason is that voters should be able to read what they are voting on."
       },
       {
-        "mark": "At break",
-        "text": "You find out who was supposed to be on duty."
+        "text": "Beside it they add an exemption for any man **entitled to vote before 1867**, and for his sons and grandsons."
       },
       {
-        "text": "The teacher on duty says nobody told her it was her week."
+        "text": "In 1867 almost nobody the test would stop had been entitled to vote."
       },
       {
-        "text": "The roster on the staffroom door has her name on it, for Tuesday."
+        "text": "**The exemption names nobody.**"
       },
       {
-        "text": "**The roster says otherwise.**"
-      },
-      {
-        "text": "You just checked a claim against a record. Now do it with a document written sixty years ago."
+        "text": "It did not have to. In this lesson a police force gives a reason for arriving late, and the timing tells you the rest."
       }
     ]
   },
   {
     "type": "question",
     "kind": "instinct",
-    "q": "Which one would you trust about whose week it was?",
+    "q": "What does the exemption tell you about the reading test?",
     "options": [
-      "The teacher, who knows her own duty timetable",
-      "The roster, which was written up well beforehand",
-      "Both of them, because both could still be right",
-      "Neither, until you find out who wrote the roster"
+      "That the states wanted only educated men to be able to cast a vote",
+      "That the test was aimed at people the exemption did not cover",
+      "That reading tests were normal across the whole country at the time",
+      "That the states expected the courts to strike the whole rule down"
     ],
     "correct": 1,
-    "explanation": "There is no score on this one. The teacher gave her account afterwards, when there was something to explain. The roster was written before anyone knew it would matter. That gap is why a court reaches for a record made at the time rather than for what people say later. You are about to watch a judge do exactly that with a police log.",
+    "explanation": "There is no score on this one. Nobody wrote down who the test was for. You worked it out from the date sitting beside it, and the date does the naming. If the aim really were an educated electorate, an exemption by ancestry makes no sense at all. In the exam this is what a suggests question wants, and repeating what the source states is marked as description.",
     "noSource": true
   },
   {
     "type": "content",
     "tag": "The turn",
-    "html": "<h2>The word for what you just did</h2><p>Nobody told you the teacher stayed away on purpose. You put an account next to a record and worked out what the gap meant.</p><p>That is <strong>inference</strong>: reading what a source implies rather than what it states.</p><p>Paper 1 asks for it constantly. <em>Comment on what is implied by</em>, or <em>explain what this suggests about</em>. The marks are for the step you take beyond the words, and they are not given for quoting the words back.</p>",
+    "html": "<h2>The word for what you just did</h2><p>Nobody wrote down who the reading test was for. You put a rule next to a date and worked out what the pairing meant.</p><p>That is <strong>inference</strong>: reading what a source implies rather than what it states.</p><p>Paper 1 asks for it constantly. <em>Comment on what is implied by</em>, or <em>explain what this suggests about</em>. The marks are for the step you take beyond the words, and they are not given for quoting the words back.</p>",
     "remember": "An implication is not in the source. It is what the source makes reasonable to conclude, and you have to say the reasoning out loud.",
     "terms": [
       {
@@ -1833,7 +1827,7 @@ function showResults(){
   });
   /* The button at the end of the lesson is the thing that continues. It does
      not point at a control somewhere else on the page. */
-  document.getElementById("finish-btn").addEventListener("click",()=>{ KulaLMS.advance(); });
+  document.getElementById("finish-btn").onclick = ()=>{ KulaLMS.advance(); };
   KulaLMS.completed();
 }
 
@@ -1885,6 +1879,7 @@ renderCover();
     ic.innerHTML = offering==="light" ? SUN : MOON;
     b.setAttribute("aria-pressed", showing==="dark" ? "true" : "false");
     b.setAttribute("aria-label", "Switch to " + offering + " mode");
+    b.setAttribute("title", offering==="light" ? "Light mode" : "Dark mode");
   }
   b.addEventListener("click",function(){
     var flipped=document.body.classList.toggle(CLS);
